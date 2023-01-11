@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/pistepankki_front_react/static/js/main.84de8b16.js",
+    "main.css": "/pistepankki_front_react/static/css/main.ca54f144.css",
+    "main.js": "/pistepankki_front_react/static/js/main.b2ca6361.js",
     "index.html": "/pistepankki_front_react/index.html",
-    "main.84de8b16.js.map": "/pistepankki_front_react/static/js/main.84de8b16.js.map"
+    "main.ca54f144.css.map": "/pistepankki_front_react/static/css/main.ca54f144.css.map",
+    "main.b2ca6361.js.map": "/pistepankki_front_react/static/js/main.b2ca6361.js.map"
   },
   "entrypoints": [
-    "static/js/main.84de8b16.js"
+    "static/css/main.ca54f144.css",
+    "static/js/main.b2ca6361.js"
   ]
 }
