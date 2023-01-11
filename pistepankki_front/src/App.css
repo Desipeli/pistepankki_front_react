@@ -1,38 +1,61 @@
+/*BODY & CONTENT*/
+
+#content {
+    max-width: 1000px;
+    margin: auto;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: #2e2e2e;
+    color: #dbdad3;
+}
+
+
+/*vaaleatumma 494d5f*/
+/*kulta ffd700*/
+
+/*NAVBAR*/
+
 #navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #181818;
+    background-color: #1c1c1c;
+    border-radius: 0 0 5px 5px;
+    min-height: 75px;
 }
 
 #navbar-logo a {
     text-decoration: none;
-    color: #e6e4cf;
+    color: #ffd700;
     font-size: 30px;
+    padding: 10px;
 }
 
 #navbar-menu {
     display: flex;
     gap: 1em;
     font-size: 20px;
+    padding: 0 10px;
 }
 
 .li-navbar a {
     transition: 200ms;
     text-decoration: none;
-    color: #e6e4cf;
-    border: solid 2px white;
+    color: #ffd700;
+    border: solid 1px #ffd700;
     border-radius: 25%;
     padding: 10px;
 }
 .li-navbar a:hover{
     transition: 500ms;
-    background-color: #5e5e5e;
+    background-color: #494d5f;
 }
 
 .green-border a {
-    border-color: green;
+    border-color: greenyellow;
 }
 
 .li-navbar {
@@ -51,5 +74,56 @@
     .li-navbar {
         display: none;
     }
+}
+
+/* LOGIN */
+
+@media only screen and (max-width: 600px) {
+    #login-frame {
+        margin: auto;
+        width: 90%;
+        padding: 10px;
+        min-width: 300px;
+    }
+}
+#login-frame {
+    margin: auto;
+    min-width: 200px;
+    max-width: 500px;
+    padding: 10px;
+}
+
+#login-form {
+    border-radius: 5px;
+    background-color: #494d5f;
+    border: black 1px solid;
+    padding: 20px;
+}
+
+#login-form input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #2e2e2e;
+    color: #dbdad3;
+} 
+
+#login-form input[type=submit]{
+    border: 1px solid yellowgreen;
+}
+
+#login-form input[type=submit]:hover{
+    transition: 500ms;
+    background-color: green;
+}
+
+/*COMMON*/
+
+input[type=submit]:hover {
+    cursor: pointer;
 }
 

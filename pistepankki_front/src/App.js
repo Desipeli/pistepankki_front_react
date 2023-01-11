@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/navbar";
+import LoginScreen from "./components/login";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -10,41 +11,27 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Routes>
-        <Route path="" element={<Home/>} />
-        <Route path="userlist" element={<UserList/>} />
-        <Route path="login" element={<LoginScreen user={ user } setUser={setUser} />}  />
-      </Routes>
+      <div id="content">  
+        <Routes>
+          <Route path="" element={<Home/>} />
+          <Route path="userlist" element={<UserList/>} />
+          <Route path="login" element={<LoginScreen user={ user } setUser={setUser} />}  />
+        </Routes>
       Hello there
+      </div>
     </div>
   )
 }
 
 const Home = () => {
+  useEffect(() => {
+    document.title = 'Pistepankki'
+  }, [])
+
   return (
     <div>
-      koti
-    </div>
-  )
-}
-
-const LoginScreen = (props) => {
-  const { user, setUser } = props
-  if (user) return <></>
-
-  return (
-    <>
-    <LoginForm />
-    </>
-    
-  )
-}
-
-const LoginForm = () => {
-  return (
-    <div>
-      <label htmlFor="input-username">Username</label>
-      <input id="input-username" type="text"></input>
+      <p></p>
+ 
     </div>
   )
 }
