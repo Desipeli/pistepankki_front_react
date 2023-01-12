@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react"
 import login from "../services/loginService"
+import { logout } from "../services/loginService"
 
 
 const LoginScreen = (props) => {
     useEffect(() => {
       document.title = 'Login'
     }, [])
-    const { user, setUser } = props
+    const { user, setUser, setTimedMessage } = props
     if (user) {
-      console.log("Kirjautunut", user)
       return (
         <div>
-          Logged in as {user}
+          Logged in as {user.username}
         </div>
       ) 
     } 
 
     return (
       <>
-      <LoginForm setUser={setUser}/>
+      <LoginForm setUser={setUser} setTimedMessage={setTimedMessage}/>
       </>
     )
   }
   
   const LoginForm = (props) => {
-    const { setUser } = props
+    const { setUser, setTimedMessage } = props
     const [usernameInput, setUsernameInput] = useState("")
     const [passwordInput, setPasswordInput] = useState("")
 
@@ -39,9 +39,10 @@ const LoginScreen = (props) => {
           window.localStorage.setItem(
             'loggedUser', JSON.stringify(saveUser)
           )
-          setUser(saveUser.username)
-        } catch (exception) {
-          console.error(exception)
+          setUser(saveUser)
+        } catch (error) {
+          console.error(error)
+          setTimedMessage(error.response.data.error, 5000)
         }
         
 
@@ -70,6 +71,10 @@ const LoginScreen = (props) => {
       </form>
       </div>
     )
+  }
+
+  export const LogOut = () => {
+    logout()
   }
 
   export default LoginScreen

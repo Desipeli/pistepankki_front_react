@@ -4,9 +4,26 @@ import { Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/navbar";
 import LoginScreen from "./components/login";
+import { LogOut } from "./components/login";
+
+import Notification from "./components/notification";
 
 function App() {
   const [user, setUser] = useState(null)
+  const [message, setMessage] = useState(null)
+  const [currentMessageTimeout, setCurrentMessageTimeout] = useState(null)
+
+  const setTimedMessage = (mess, timeout) => {
+    if (currentMessageTimeout) {
+      clearTimeout(currentMessageTimeout)
+    }
+    setMessage(mess)
+    const timeId = setTimeout(() => {
+      setMessage(null)
+    }, timeout)
+    setCurrentMessageTimeout(timeId)
+
+  }
 
   // Check if user logged in
   useEffect(() => {
@@ -19,12 +36,14 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar user={user} />
+      <Navbar user={user} setUser={setUser} />
+      <Notification message={message}/>
       <div id="content">  
         <Routes>
           <Route path="" element={<Home/>} />
           <Route path="userlist" element={<UserList/>} />
-          <Route path="login" element={<LoginScreen user={ user } setUser={setUser} />}  />
+          <Route path="login" element={<LoginScreen user={ user } setUser={setUser} setTimedMessage={setTimedMessage} />}  />
+          <Route path="logout" element={<LogOut />} />
         </Routes>
       Hello there
       </div>

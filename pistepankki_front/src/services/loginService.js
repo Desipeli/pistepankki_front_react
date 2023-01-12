@@ -6,5 +6,9 @@ const login = async (username, password) => {
     return res.data
 }
 
+export const logout = () => {
+    window.localStorage.removeItem('loggedUser')
+    window.location.replace("/")
+}
 
 export default login
