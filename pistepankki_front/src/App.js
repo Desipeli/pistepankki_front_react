@@ -4,9 +4,11 @@ import { Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/navbar";
 import LoginScreen from "./components/login";
+import Match from "./components/match";
 import { LogOut } from "./components/login";
 
 import Notification from "./components/notification";
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -42,10 +44,16 @@ function App() {
         <Routes>
           <Route path="" element={<Home/>} />
           <Route path="userlist" element={<UserList/>} />
-          <Route path="login" element={<LoginScreen user={ user } setUser={setUser} setTimedMessage={setTimedMessage} />}  />
+          <Route path="login" element={
+            <LoginScreen user={ user }
+              setUser={setUser}
+              setTimedMessage={setTimedMessage} />
+            }/>
           <Route path="logout" element={<LogOut />} />
+          <Route path="newmatch" element={<Match setTimedMessage={setTimedMessage}/>}/>
         </Routes>
       Hello there
+      
       </div>
     </div>
   )
