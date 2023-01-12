@@ -8,7 +8,7 @@
 
 body {
     margin: 0;
-    background-color: #2e2e2e;
+    background-color: #1c1c1c;
     color: #dbdad3;
 }
 
@@ -22,7 +22,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1c1c1c;
+    background-color: #2e2e2e;
     border-radius: 0 0 5px 5px;
     min-height: 75px;
 }
@@ -96,7 +96,7 @@ body {
 #login-form {
     border-radius: 5px;
     background-color: #494d5f;
-    border: black 1px solid;
+    border: wheat 1px solid;
     padding: 20px;
 }
 

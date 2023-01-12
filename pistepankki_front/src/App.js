@@ -8,9 +8,18 @@ import LoginScreen from "./components/login";
 function App() {
   const [user, setUser] = useState(null)
 
+  // Check if user logged in
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+    }
+  }, [])
+
   return (
     <div className="App">
-      <Navbar />
+      <Navbar user={user} />
       <div id="content">  
         <Routes>
           <Route path="" element={<Home/>} />
