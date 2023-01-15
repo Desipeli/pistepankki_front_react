@@ -252,8 +252,13 @@ input[type=submit]:hover {
     margin: 0px 10px;
 }
 
-#add-round {
-    margin: 0 25% 0 25%;
+#round-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.round-button {
+    margin: 0 10% 0 10%;
     height: 50px;
     width: 50%;
 }

@@ -32,6 +32,10 @@ const CurrentMatch = (props) => {
         setRounds(rounds.concat(newRound))
     }
 
+    const handleRemoveRound = () => {
+        setRounds(rounds.slice(0,-1))
+    }
+
     return (
         <div id="current-match">
             
@@ -56,7 +60,10 @@ const CurrentMatch = (props) => {
                 )
             }
             <br></br>
-            <button className="match-button green-border" id="add-round" onClick={handleAddRound}>Add Round</button>
+            <div id="round-buttons">
+                <button className="match-button red-border round-button" onClick={handleRemoveRound}>Remove Round</button>
+                <button className="match-button green-border round-button" onClick={handleAddRound}>Add Round</button>
+            </div>
         </div>
     )
 }
