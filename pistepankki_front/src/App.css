@@ -106,14 +106,6 @@ body {
 
 /* LOGIN */
 
-@media only screen and (max-width: 600px) {
-    #login-frame {
-        margin: auto;
-        width: 90%;
-        padding: 10px;
-        min-width: 300px;
-    }
-}
 #login-frame {
     margin: auto;
     min-width: 200px;
