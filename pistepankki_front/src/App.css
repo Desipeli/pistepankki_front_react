@@ -2,12 +2,19 @@
 :root {
     /*DARK*/
     --text-dark: #dbdad3;
+    --text-input-dark: #dbdad3;
     --bg-content-dark: #1c1c1c;
     --bg-navbar-dark: #2e2e2e;
+    --bg-form-dark: #494d5f;
+    --bg-form-border-dark: wheat;
+    --border-form-input-dark: black;
+    --bg-form-input-dark: #2e2e2e;
+    --bg-button-hover-green-dark: green;
+    --bg-button-hover-red-dark: red;
     --text-navbar-dark: #ffd700;
     --bg-navbar-button-hover: #494d5f;
-    --border-green: greenyellow;
-    --border-red: red;
+    --border-green-dark: greenyellow;
+    --border-red-dark: red;
 }
 
 /*BODY & CONTENT*/
@@ -72,12 +79,12 @@ body {
 
 .li-navbar-login a {
     color: var(--text-navbar-dark);
-    border: solid 1px var(--border-green);
+    border: solid 1px var(--border-green-dark);
 }
 
 .li-navbar-logout a {
     color: var(--text-navbar-dark);
-    border: solid 1px var(--border-red);
+    border: solid 1px var(--border-red-dark);
 }
 
 .li-navbar a:hover{
@@ -115,8 +122,8 @@ body {
 
 #login-form {
     border-radius: 5px;
-    background-color: #494d5f;
-    border: wheat 1px solid;
+    background-color: var(--bg-form-dark);
+    border: var(--bg-form-border-dark) 1px solid;
     padding: 20px;
 }
 
@@ -125,20 +132,20 @@ body {
     padding: 12px 20px;
     margin: 8px 0;
     display: block;
-    border: 1px solid black;
+    border: 1px solid var(--border-form-input-dark);
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: #2e2e2e;
-    color: #dbdad3;
+    background-color: var(--bg-form-input-dark);
+    color: var(--text-input-dark);
 } 
 
 #login-form input[type=submit]{
-    border: 1px solid yellowgreen;
+    border: 1px solid var(--border-green-dark);
 }
 
 #login-form input[type=submit]:hover{
     transition: 500ms;
-    background-color: green;
+    background-color: var(--bg-button-hover-green-dark);
 }
 
 /*COMMON*/
@@ -148,18 +155,23 @@ input[type=submit]:hover {
 }
 
 .green-border {
-    border: solid greenyellow 1px;
+    border: solid var(--border-green-dark) 1px;
     border-radius: 5px;
 }
 
+.green-border:hover {
+    transition: 200ms;
+    background-color: var(--bg-button-hover-green-dark);
+}
+
 .red-border {
-    border: solid red 1px;
+    border: solid var(--border-red-dark) 1px;
     border-radius: 5px;
 }
 
 .red-border:hover {
     transition: 200ms;
-    background-color: red;
+    background-color: var(--bg-button-hover-red-dark);
 
 }
 /*MATCH*/
