@@ -127,3 +127,32 @@ input[type=submit]:hover {
     cursor: pointer;
 }
 
+.green-border {
+    border: solid greenyellow 1px;
+    border-radius: 5px;
+}
+
+.red-border {
+    border: solid red 1px;
+    border-radius: 5px;
+}
+/*MATCH*/
+
+#matchdiv {
+    margin: auto;
+    display: block;
+    width: 50%;
+}
+
+#new-match-select {
+    width: 100%;
+    display: block;
+    height: 30px;
+    font-size: 20px;
+}
+
+.match-button {
+    margin: 5px 0px;
+    height: 30px;
+    background: none;
+}

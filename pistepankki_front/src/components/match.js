@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { redirect } from "react-router-dom"
 import getSports from "../services/sportService"
 import getAllUsers from "../services/userService"
 
@@ -9,13 +8,72 @@ const Match = (props) => {
     const [sport, setSport] = useState([])
 
     return (
-        <>
+        <div id="matchdiv">
         <PreMatch setTimedMessage={setTimedMessage}
             setPlayers={setPlayers}
             players={players}
             setSport={setSport}/>
-        </>
+        <CurrentMatch setTimedMessage={setTimedMessage}
+            players={players}
+            sport={sport}/>
+        </div>
     )
+}
+
+const CurrentMatch = (props) => {
+    const { setTimedMessage, players, sport } = props
+    const [rounds, setRounds] = useState([])
+
+    const handleAddRound = () => {
+        const newRound = {}
+        players.forEach(player => {
+            newRound[player] = 0
+        })
+        setRounds(rounds.concat(newRound))
+    }
+
+    return (
+        <div id="current-match">
+            
+            {
+                rounds.map((round, index) => 
+                    <div key={`round-${index+1}`}>
+                        <h1>Round {index}</h1>
+                        {
+                            players.map((player, Playerindex) =>
+                                <div key={`roundplayer-${index}-${Playerindex}`}>
+                                    <label htmlFor="round">{player}</label>
+                                    <input type="number" id={`roundplayer-${index}-${Playerindex}`} step="1"></input>
+                                </div>   
+                            )
+                        }
+                    </div>
+                )
+            }
+            <button id="new-round" onClick={handleAddRound}>Add Round</button>
+        </div>
+    )
+    // return (
+    //     <div id="current-match">
+    //         {rounds
+    //             ? rounds.map((round, index) => 
+    //                 <div id={`round-${index}`} key={`round-${index}`}>
+    //                     <p>Round {index + 1}</p>
+    //                     {players
+    //                         ? players.map((player, playerIndex) => 
+    //                         <div key={`roundplayers-${index}-${playerIndex}`}>
+    //                             <label htmlFor={`roundplayer-${playerIndex}`}>Player {playerIndex + 1}</label>
+    //                             <input id={`roundplayer-${playerIndex}`} type="number" step={1}></input>
+    //                          </div>
+    //                         )  
+    //                         : null}
+    //                 </div>
+    //             )
+    //             : null
+    //         }
+    //         <button id="new-round">Add Round</button>
+    //     </div>
+    // )
 }
 
 const PreMatch = (props) => {
@@ -33,10 +91,8 @@ const PreMatch = (props) => {
             setTimedMessage(error)
         }
     }, [])
-    console.log(sports)
     const handleAddPlayer = () => {
         setPlayers(players.concat(""))
-        console.log(players)
     }
 
     const handlePlayerInput = (value, index) => {
@@ -75,13 +131,13 @@ const PreMatch = (props) => {
                             <label htmlFor={`player-${index}`}>{`Player ${index+1}`}</label>
                             <input id={`player-${index}`} value={player}
                                 onChange={({target}) => handlePlayerInput(target.value, index)}/>
-                            <button id={`remove-player-${index}`} 
+                            <button className="match-button red-border" id={`remove-player-${index}`} 
                                 onClick={() => handlePlayerRemove(index)}>Remove</button>
                         </div>)
                     : null
                 }
             </div>
-            <button id="add-player" onClick={handleAddPlayer}>Add Player</button>
+            <button className="match-button green-border" id="add-player" onClick={handleAddPlayer}>Add Player</button>
         </div>
     )
 }
