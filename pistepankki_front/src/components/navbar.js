@@ -7,12 +7,12 @@ const Navbar = (props) => {
         <nav id='navbar'>
             <div id="navbar-logo"><Link to="/">Pistepankki</Link></div>
             <ul id="navbar-menu">
-                <li className="li-navbar"><Link to="/">Home</Link></li>
-                <li className="li-navbar"><Link to="newmatch">New Match</Link></li>
-                <li className="li-navbar"><Link to="userlist">userlist</Link></li>
+                <li className="li-navbar li-navbar-normal"><Link to="/">Home</Link></li>
+                <li className="li-navbar li-navbar-normal"><Link to="newmatch">New Match</Link></li>
+                <li className="li-navbar li-navbar-normal"><Link to="userlist">userlist</Link></li>
                 {user 
-                    ? <li className="li-navbar green-border">{user && <Link to="logout">Log Out</Link>}</li>
-                    : <li className="li-navbar green-border">{!user && <Link to="login">Log in</Link> }</li>
+                    ? <li className="li-navbar li-navbar-logout ">{user && <Link to="logout">Log Out</Link>}</li>
+                    : <li className="li-navbar li-navbar-login ">{!user && <Link to="login">Log in</Link> }</li>
                 }                
             </ul>
             <div id="hamburger">&#9776;</div>

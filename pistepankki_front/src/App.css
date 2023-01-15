@@ -1,3 +1,15 @@
+/*COLORS*/
+:root {
+    /*DARK*/
+    --text-dark: #dbdad3;
+    --bg-content-dark: #1c1c1c;
+    --bg-navbar-dark: #2e2e2e;
+    --text-navbar-dark: #ffd700;
+    --bg-navbar-button-hover: #494d5f;
+    --border-green: greenyellow;
+    --border-red: red;
+}
+
 /*BODY & CONTENT*/
 
 #content {
@@ -8,8 +20,8 @@
 
 body {
     margin: 0;
-    background-color: #1c1c1c;
-    color: #dbdad3;
+    background-color: var(--bg-content-dark);
+    color: var(--text-dark);
 }
 
 
@@ -22,14 +34,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #2e2e2e;
+    background-color: var(--bg-navbar-dark);
     border-radius: 0 0 5px 5px;
     min-height: 75px;
 }
 
 #navbar-logo a {
     text-decoration: none;
-    color: #ffd700;
+    color: var(--text-navbar-dark);
     font-size: 30px;
     padding: 10px;
 }
@@ -41,21 +53,36 @@ body {
     padding: 0 10px;
 }
 
+.li-navbar-normal a {
+    color: var(--text-navbar-dark);
+    border: solid 1px var(--text-navbar-dark);
+}
+
 .li-navbar a {
     transition: 200ms;
     text-decoration: none;
-    color: #ffd700;
-    border: solid 1px #ffd700;
     border-radius: 25%;
     padding: 10px;
 }
-.li-navbar a:hover{
-    transition: 500ms;
-    background-color: #494d5f;
+
+.li-navbar-login, .li-navbar-logout {
+    display: block;
+    list-style-type: none;
 }
 
-.green-border a {
-    border-color: greenyellow;
+.li-navbar-login a {
+    color: var(--text-navbar-dark);
+    border: solid 1px var(--border-green);
+}
+
+.li-navbar-logout a {
+    color: var(--text-navbar-dark);
+    border: solid 1px var(--border-red);
+}
+
+.li-navbar a:hover{
+    transition: 500ms;
+    background-color: var(--bg-navbar-button-hover);
 }
 
 .li-navbar {
@@ -66,6 +93,7 @@ body {
 #hamburger {
     display: none;
 }
+
 @media only screen and (max-width: 600px) {
     #hamburger {
         display: block;
@@ -136,12 +164,21 @@ input[type=submit]:hover {
     border: solid red 1px;
     border-radius: 5px;
 }
+
+.red-border:hover {
+    transition: 200ms;
+    background-color: red;
+
+}
 /*MATCH*/
 
 #matchdiv {
     margin: auto;
     display: block;
-    width: 50%;
+    width: 50% - padding;
+    min-width: 200px;
+    max-width: 600px;
+    padding: 20px;
 }
 
 #new-match-select {
@@ -155,4 +192,15 @@ input[type=submit]:hover {
     margin: 5px 0px;
     height: 30px;
     background: none;
+    color: white;
+}
+
+.match-button:hover {
+    cursor: pointer;
+}
+
+.round {
+    margin: auto;
+    display: block;
+    width: 50%;
 }
