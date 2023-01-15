@@ -41,20 +41,22 @@ const CurrentMatch = (props) => {
                         <h1>Round {index}</h1>
                         {
                             players.map((player, Playerindex) =>
-                                <div key={`roundplayer-${index}-${Playerindex}`}>
-                                    <label htmlFor="round">{player}</label>
+                                <div className="round-players" key={`roundplayer-${index}-${Playerindex}`}>
+                                    <input htmlFor={`roundplayer-${index}-${Playerindex}`} className="name-input" disabled value={player}></input>
                                     <input
                                         className="score-input"
                                         type="number"
                                         id={`roundplayer-${index}-${Playerindex}`}
                                         step="1"></input>
+                                    <p>wins</p>
                                 </div>   
                             )
                         }
                     </div>
                 )
             }
-            <button id="new-round" onClick={handleAddRound}>Add Round</button>
+            <br></br>
+            <button className="match-button green-border" id="add-round" onClick={handleAddRound}>Add Round</button>
         </div>
     )
 }
@@ -122,6 +124,7 @@ const PreMatch = (props) => {
                     : null
                 }
             </div>
+            <br></br>
             <button className="match-button green-border" id="add-player" onClick={handleAddPlayer}>Add Player</button>
         </div>
     )

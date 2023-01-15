@@ -175,7 +175,6 @@ input[type=submit]:hover {
 
 }
 /*MATCH*/
-
 #matchdiv {
     margin: auto;
     display: block;
@@ -188,13 +187,13 @@ input[type=submit]:hover {
 #new-match-select {
     width: 100%;
     display: block;
-    height: 30px;
+    height: 40px;
     font-size: 20px;
 }
 
 .match-button {
-    margin: 5px 0px;
-    height: 30px;
+
+    height: 40px;
     background: none;
     color: white;
 }
@@ -203,13 +202,19 @@ input[type=submit]:hover {
     cursor: pointer;
 }
 
-.round {
-    margin: auto;
-    display: block;
+#add-player {
+    margin: 0 25% 0 25%;
+    height: 50px;
     width: 50%;
 }
 
+.round h1 {
+    display: flex;
+    justify-content: center;
+}
+
 .added-player {
+    padding-top: 10px;
     white-space: nowrap;
     display: flex;
     justify-content: space-between;
@@ -223,6 +228,32 @@ input[type=submit]:hover {
     margin: 0px 10px;
 }
 
+.round-players {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.name-input {
+    min-width: 50px;
+    width: 200px;
+    height: 20px;
+    font-size: 18px;
+    margin: 0px 10px;
+    background: none;
+    border: none;
+    color: var(--text-dark);
+}
+
 .score-input {
-    max-width: 50px;
+    min-width: 50px;
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+    margin: 0px 10px;
+}
+
+#add-round {
+    margin: 0 25% 0 25%;
+    height: 50px;
+    width: 50%;
 }
