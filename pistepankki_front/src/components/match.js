@@ -43,7 +43,11 @@ const CurrentMatch = (props) => {
                             players.map((player, Playerindex) =>
                                 <div key={`roundplayer-${index}-${Playerindex}`}>
                                     <label htmlFor="round">{player}</label>
-                                    <input type="number" id={`roundplayer-${index}-${Playerindex}`} step="1"></input>
+                                    <input
+                                        className="score-input"
+                                        type="number"
+                                        id={`roundplayer-${index}-${Playerindex}`}
+                                        step="1"></input>
                                 </div>   
                             )
                         }
@@ -53,27 +57,6 @@ const CurrentMatch = (props) => {
             <button id="new-round" onClick={handleAddRound}>Add Round</button>
         </div>
     )
-    // return (
-    //     <div id="current-match">
-    //         {rounds
-    //             ? rounds.map((round, index) => 
-    //                 <div id={`round-${index}`} key={`round-${index}`}>
-    //                     <p>Round {index + 1}</p>
-    //                     {players
-    //                         ? players.map((player, playerIndex) => 
-    //                         <div key={`roundplayers-${index}-${playerIndex}`}>
-    //                             <label htmlFor={`roundplayer-${playerIndex}`}>Player {playerIndex + 1}</label>
-    //                             <input id={`roundplayer-${playerIndex}`} type="number" step={1}></input>
-    //                          </div>
-    //                         )  
-    //                         : null}
-    //                 </div>
-    //             )
-    //             : null
-    //         }
-    //         <button id="new-round">Add Round</button>
-    //     </div>
-    // )
 }
 
 const PreMatch = (props) => {
@@ -127,9 +110,11 @@ const PreMatch = (props) => {
                 {
                 players
                     ? players.map((player, index) =>
-                        <div key={index}>
+                        <div className="added-player" key={index}>
                             <label htmlFor={`player-${index}`}>{`Player ${index+1} `}</label>
-                            <input id={`player-${index}`} value={player}
+                            <input 
+                                className="player-input"
+                                id={`player-${index}`} value={player}
                                 onChange={({target}) => handlePlayerInput(target.value, index)}/>
                             <button className="match-button red-border" id={`remove-player-${index}`} 
                                 onClick={() => handlePlayerRemove(index)}>Remove</button>
