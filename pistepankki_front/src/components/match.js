@@ -166,7 +166,9 @@ const PreMatch = (props) => {
                             <input 
                                 className="player-input"
                                 id={`player-${index}`} value={player}
+                                autoComplete="off"
                                 onChange={({target}) => handlePlayerInput(target.value, index)}
+                                list="playerdatalist"
                                 disabled={matchOn}/>
                             <button className="match-button red-border" id={`remove-player-${index}`} 
                                 onClick={() => handlePlayerRemove(index)}
