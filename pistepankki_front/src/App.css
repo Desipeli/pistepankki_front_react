@@ -22,7 +22,7 @@
 #content {
     max-width: 1000px;
     margin: auto;
-    height: 100%;
+    /* height: 100%; */
 }
 
 body {
@@ -198,9 +198,9 @@ input[type=submit]:hover {
     color: white;
 }
 
-.match-button:hover {
+/* .match-button:hover {
     cursor: pointer;
-}
+} */
 
 #add-player {
     margin: 0 25% 0 25%;
@@ -261,4 +261,23 @@ input[type=submit]:hover {
     margin: 0 10% 0 10%;
     height: 50px;
     width: 50%;
+}
+
+#start-match {
+    margin: 0 25% 0 25%;
+    width: 50%;
+    height: 50px;
+}
+
+button:disabled {
+    cursor: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    cursor: default;
+}
+
+button {
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
 }

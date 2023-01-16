@@ -6,22 +6,42 @@ const Match = (props) => {
     const { setTimedMessage } = props
     const [players, setPlayers] = useState([])
     const [sport, setSport] = useState([])
+    const [matchOn, setMatchOn] = useState(false)
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        const fetchUsers = async() => {
+            try {
+                const result = await getAllUsers()
+                const formatted = result.data.map(u => {
+                    return {"username": u.username, _id: u._id}
+                })
+                setUsers(formatted)
+            } catch (error) {
+                setTimedMessage(error.message, 5000)
+            }
+        }
+        fetchUsers()
+    },[])
 
     return (
         <div id="matchdiv">
         <PreMatch setTimedMessage={setTimedMessage}
             setPlayers={setPlayers}
             players={players}
-            setSport={setSport}/>
+            setSport={setSport}
+            matchOn={matchOn}/>
         <CurrentMatch setTimedMessage={setTimedMessage}
             players={players}
-            sport={sport}/>
+            sport={sport}
+            matchOn={matchOn}
+            setMatchOn={setMatchOn}/>
         </div>
     )
 }
 
 const CurrentMatch = (props) => {
-    const { setTimedMessage, players, sport } = props
+    const { setTimedMessage, players, sport, matchOn, setMatchOn } = props
     const [rounds, setRounds] = useState([])
 
     const handleAddRound = () => {
@@ -30,11 +50,27 @@ const CurrentMatch = (props) => {
             newRound[player] = 0
         })
         setRounds(rounds.concat(newRound))
+        const content = document.getElementById('content')
+        const rndbtns = document.getElementById('round-buttons')
+        if (content.scrollHeight > window.innerHeight) {
+            rndbtns.scrollIntoView()
+        }
     }
 
     const handleRemoveRound = () => {
-        setRounds(rounds.slice(0,-1))
+        if (rounds.length == 0) {
+            setMatchOn(false)
+        } else {
+            setRounds(rounds.slice(0,-1))
+        }
+        
     }
+
+    const handleStartMatch = () => {
+        setMatchOn(true)
+    }
+
+
 
     return (
         <div id="current-match">
@@ -60,16 +96,22 @@ const CurrentMatch = (props) => {
                 )
             }
             <br></br>
-            <div id="round-buttons">
-                <button className="match-button red-border round-button" onClick={handleRemoveRound}>Remove Round</button>
-                <button className="match-button green-border round-button" onClick={handleAddRound}>Add Round</button>
-            </div>
+            {matchOn
+                ?  <div id="round-buttons">
+                        <button className="match-button red-border round-button" onClick={handleRemoveRound}>
+                            {rounds.length > 0 ? "Remove Round" : "Make Changes"}</button>
+                        <button className="match-button green-border round-button" onClick={handleAddRound}>Add Round</button>
+                </div>
+                : 
+                <button id="start-match" className="match-button green-border " onClick={handleStartMatch}>Start Match!</button>
+            }
+           
         </div>
     )
 }
 
 const PreMatch = (props) => {
-    const { setTimedMessage, setPlayers, players, setSport } = props
+    const { setTimedMessage, setPlayers, players, setSport, matchOn } = props
     const [sports, setSports] = useState([])
     const [users, setUsers] = useState([])
 
@@ -106,7 +148,8 @@ const PreMatch = (props) => {
         <div>
             <div>
                 <label htmlFor="new-match-select">Choose Sport</label>
-                <select id="new-match-select" onChange={({target}) => handleSportChange(target.value)}>
+                <select id="new-match-select" onChange={({target}) => handleSportChange(target.value)}
+                    disabled={matchOn}>
                     {sports
                         ? sports.map(sport => 
                             <option key={sport._id}    
@@ -124,15 +167,18 @@ const PreMatch = (props) => {
                             <input 
                                 className="player-input"
                                 id={`player-${index}`} value={player}
-                                onChange={({target}) => handlePlayerInput(target.value, index)}/>
+                                onChange={({target}) => handlePlayerInput(target.value, index)}
+                                disabled={matchOn}/>
                             <button className="match-button red-border" id={`remove-player-${index}`} 
-                                onClick={() => handlePlayerRemove(index)}>Remove</button>
+                                onClick={() => handlePlayerRemove(index)}
+                                disabled={matchOn}>Remove</button>
                         </div>)
                     : null
                 }
             </div>
             <br></br>
-            <button className="match-button green-border" id="add-player" onClick={handleAddPlayer}>Add Player</button>
+            <button className="match-button green-border" id="add-player" onClick={handleAddPlayer}
+                disabled={matchOn}>Add Player</button>
         </div>
     )
 }
