@@ -12,11 +12,8 @@ const Match = (props) => {
     useEffect(() => {
         const fetchUsers = async() => {
             try {
-                const allUsers = async () => setUsers((await getAllUsers()).map( u => {
-                    return {"username": u.username, _id: u._id}
-                }))
+                const allUsers = await getAllUsers()
                 setUsers(allUsers)
-                console.log(users)
             } catch (error) {
                 setTimedMessage(error.message, 5000)
             }
@@ -30,7 +27,8 @@ const Match = (props) => {
             setPlayers={setPlayers}
             players={players}
             setSport={setSport}
-            matchOn={matchOn}/>
+            matchOn={matchOn}
+            users={users}/>
         <CurrentMatch setTimedMessage={setTimedMessage}
             players={players}
             sport={sport}
@@ -111,7 +109,7 @@ const CurrentMatch = (props) => {
 }
 
 const PreMatch = (props) => {
-    const { setTimedMessage, setPlayers, players, setSport, matchOn } = props
+    const { setTimedMessage, setPlayers, players, setSport, matchOn, users } = props
     const [sports, setSports] = useState([])
     useEffect( () => {
         try {
@@ -155,6 +153,11 @@ const PreMatch = (props) => {
                 </select>
             </div>
             <div>
+                <datalist id="playerdatalist">
+                    {users
+                        ? users.map(u => <option key={u.username} value={u.username}></option>)
+                        : null}
+                </datalist>
                 {
                 players
                     ? players.map((player, index) =>
