@@ -3,7 +3,7 @@ const baseUrl = process.env.REACT_APP_BACKEND_URL + "/api/users"
 
 const getAllUsers = async () => {
         const users = await axios.get(baseUrl)
-        return users   
+        return users.data
 }
 
 export default getAllUsers
