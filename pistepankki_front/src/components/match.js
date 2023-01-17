@@ -45,7 +45,7 @@ const Match = (props) => {
 }
 
 const CurrentMatch = (props) => {
-    const { setTimedMessage, players, sport, matchOn, setMatchOn, users, sports } = props
+    const { setTimedMessage, players, matchOn, setMatchOn, users} = props
     const [rounds, setRounds] = useState([])
 
     const handleAddRound = () => {
@@ -71,7 +71,7 @@ const CurrentMatch = (props) => {
 
     const handleStartMatch = () => {
         try {
-            validatePreMatch(sport, players, users, sports)
+            validatePreMatch(players, users)
             setMatchOn(true)
         } catch (error) {
             setTimedMessage(error.message, 5000)
