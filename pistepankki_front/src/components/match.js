@@ -11,17 +11,17 @@ const Match = (props) => {
     const [users, setUsers] = useState([])
     const [sports, setSports] = useState([])
 
-    useEffect(() => {
-        const fetchUsers = async() => {
-            try {
+    try {
+        useEffect(() => {
+            const fetchUsers = async() => {
                 const allUsers = await getAllUsers()
                 setUsers(allUsers)
-            } catch (error) {
-                setTimedMessage(error.message, 5000)
             }
-        }
-        fetchUsers()
-    },[])
+            fetchUsers()
+        },[])
+    } catch (error) {
+        setTimedMessage(error.message, 5000)
+    }
 
     return (
         <div id="matchdiv">
@@ -119,14 +119,16 @@ const CurrentMatch = (props) => {
 
 const PreMatch = (props) => {
     const { setTimedMessage, setPlayers, players, setSport, matchOn, users, sports, setSports } = props
-    useEffect( () => {
-        try {
+
+    try {
+        useEffect( () => {
             const allSports = async () => setSports(await getSports())
             allSports()
-        } catch (error) {
-            setTimedMessage(error)
-        }
-    }, [])
+        }, [setSports])
+    } catch (error) {
+        setTimedMessage(error)
+    }
+
     const handleAddPlayer = () => {
         setPlayers(players.concat(""))
     }
