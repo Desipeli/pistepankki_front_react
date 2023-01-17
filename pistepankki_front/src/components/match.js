@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import getSports from "../services/sportService"
 import getAllUsers from "../services/userService"
+import { validatePreMatch } from "../services/matchService"
 
 const Match = (props) => {
     const { setTimedMessage } = props
@@ -8,6 +9,7 @@ const Match = (props) => {
     const [sport, setSport] = useState([])
     const [matchOn, setMatchOn] = useState(false)
     const [users, setUsers] = useState([])
+    const [sports, setSports] = useState([])
 
     useEffect(() => {
         const fetchUsers = async() => {
@@ -28,18 +30,22 @@ const Match = (props) => {
             players={players}
             setSport={setSport}
             matchOn={matchOn}
-            users={users}/>
+            users={users}
+            sports={sports}
+            setSports={setSports}/>
         <CurrentMatch setTimedMessage={setTimedMessage}
             players={players}
             sport={sport}
             matchOn={matchOn}
-            setMatchOn={setMatchOn}/>
+            setMatchOn={setMatchOn}
+            users={users}
+            sports={sports}/>
         </div>
     )
 }
 
 const CurrentMatch = (props) => {
-    const { setTimedMessage, players, sport, matchOn, setMatchOn } = props
+    const { setTimedMessage, players, sport, matchOn, setMatchOn, users, sports } = props
     const [rounds, setRounds] = useState([])
 
     const handleAddRound = () => {
@@ -56,19 +62,22 @@ const CurrentMatch = (props) => {
     }
 
     const handleRemoveRound = () => {
-        if (rounds.length == 0) {
+        if (rounds.length === 0) {
             setMatchOn(false)
         } else {
             setRounds(rounds.slice(0,-1))
         }
-        
     }
 
     const handleStartMatch = () => {
-        setMatchOn(true)
+        try {
+            validatePreMatch(sport, players, users, sports)
+            setMatchOn(true)
+        } catch (error) {
+            setTimedMessage(error.message, 5000)
+        }
+        
     }
-
-
 
     return (
         <div id="current-match">
@@ -109,8 +118,7 @@ const CurrentMatch = (props) => {
 }
 
 const PreMatch = (props) => {
-    const { setTimedMessage, setPlayers, players, setSport, matchOn, users } = props
-    const [sports, setSports] = useState([])
+    const { setTimedMessage, setPlayers, players, setSport, matchOn, users, sports, setSports } = props
     useEffect( () => {
         try {
             const allSports = async () => setSports(await getSports())
