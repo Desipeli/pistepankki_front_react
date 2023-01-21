@@ -252,6 +252,17 @@ input[type=submit]:hover {
     margin: 0px 10px;
 }
 
+.win-input {
+    min-width: 25px;
+    width: 50px;
+    height: 30px;
+    font-size: 18px;
+    margin: 0px 10px;
+    background: none;
+    border: none;
+    color: var(--text-dark);
+}
+
 #round-buttons {
     display: flex;
     justify-content: space-between;

@@ -10,6 +10,7 @@ const Match = (props) => {
     const [matchOn, setMatchOn] = useState(false)
     const [users, setUsers] = useState([])
     const [sports, setSports] = useState([])
+    const [scores, setScores] = useState([])
 
     try {
         useEffect(() => {
@@ -39,33 +40,33 @@ const Match = (props) => {
             matchOn={matchOn}
             setMatchOn={setMatchOn}
             users={users}
-            sports={sports}/>
+            sports={sports}
+            scores={scores}
+            setScores={setScores}/>
         </div>
     )
 }
 
 const CurrentMatch = (props) => {
-    const { setTimedMessage, players, matchOn, setMatchOn, users} = props
-    const [rounds, setRounds] = useState([])
+    const { setTimedMessage, players, matchOn, setMatchOn, users, scores, setScores} = props
+    const [wins, setWins] = useState([])
 
     const handleAddRound = () => {
         const newRound = {}
         players.forEach(player => {
             newRound[player] = 0
         })
-        setRounds(rounds.concat(newRound))
-        const content = document.getElementById('content')
-        const rndbtns = document.getElementById('round-buttons')
-        if (content.scrollHeight > window.innerHeight) {
-            rndbtns.scrollIntoView()
-        }
+        setScores([...scores, players.map(p => 0)])
+        setWins([...wins, players.map(p => 0)])
     }
 
     const handleRemoveRound = () => {
-        if (rounds.length === 0) {
+        if (scores.length === 0) {
             setMatchOn(false)
         } else {
-            setRounds(rounds.slice(0,-1))
+            const copyScores = [...scores]
+            copyScores.pop()
+            setScores(copyScores)
         }
     }
 
@@ -75,15 +76,45 @@ const CurrentMatch = (props) => {
             setMatchOn(true)
         } catch (error) {
             setTimedMessage(error.message, 5000)
+        }   
+    }
+
+    const handleScoreChange = (inputField) => {
+        let value = 0
+        if (inputField.value) {
+            value = Number(inputField.value)
         }
-        
+        const roundIndex = Number(inputField.id.split("-")[1])
+        const playerId = Number(inputField.id.split("-")[2])
+        const copyScores = [...scores]
+        copyScores[roundIndex][playerId] = value
+        setScores(copyScores)
+        countWinsFromRound(roundIndex)
+    }
+
+    const countWinsFromRound = (startingRoundIndex) => {
+        for (let roundIndex = startingRoundIndex; roundIndex < scores.length; roundIndex++) {
+            const highestScore = scores[roundIndex].reduce((a, b) => Math.max(a, b), -Infinity)
+            scores[roundIndex].forEach(( value, playerIndex) => {
+                if (roundIndex === 0) {
+                    wins[roundIndex][playerIndex] = 0
+                } else {
+                    wins[roundIndex][playerIndex] = wins[roundIndex-1][playerIndex]
+                }
+                if (value === highestScore) {
+                    wins[roundIndex][playerIndex] += 1
+                }
+                const winInput = document.getElementById(`wins-${roundIndex}-${playerIndex}`)
+                winInput.value = wins[roundIndex][playerIndex]
+            })
+        }
     }
 
     return (
         <div id="current-match">
             
             {
-                rounds.map((round, index) => 
+                scores.map((round, index) => 
                     <div className="round" id={`round-${index+1}`} key={`round-${index+1}`}>
                         <h1>Round {index}</h1>
                         {
@@ -94,8 +125,16 @@ const CurrentMatch = (props) => {
                                         className="score-input"
                                         type="number"
                                         id={`roundplayer-${index}-${Playerindex}`}
-                                        step="1"></input>
-                                    <p>wins</p>
+                                        step="1"
+                                        onChange={({target}) => handleScoreChange(target)}></input>
+                                    <input
+                                        className="win-input"
+                                        key={`wins-${index}-${Playerindex}`}
+                                        id={`wins-${index}-${Playerindex}`}
+                                        type="number"
+                                        step="1"
+                                        defaultValue={0}
+                                        disabled></input>
                                 </div>   
                             )
                         }
@@ -106,7 +145,7 @@ const CurrentMatch = (props) => {
             {matchOn
                 ?  <div id="round-buttons">
                         <button className="match-button red-border round-button" onClick={handleRemoveRound}>
-                            {rounds.length > 0 ? "Remove Round" : "Make Changes"}</button>
+                            {scores.length > 0 ? "Remove Round" : "Make Changes"}</button>
                         <button className="match-button green-border round-button" onClick={handleAddRound}>Add Round</button>
                 </div>
                 : 
