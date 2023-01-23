@@ -110,6 +110,15 @@ const CurrentMatch = (props) => {
         }
     }
 
+    const sendMatchToServer = async (target) => {
+        // validointi
+        target.disabled = true
+        setTimeout(() => {
+            target.disabled = false
+        }, 5000)
+
+    }
+
     return (
         <div id="current-match">
             
@@ -143,11 +152,18 @@ const CurrentMatch = (props) => {
             }
             <br></br>
             {matchOn
-                ?  <div id="round-buttons">
-                        <button className="match-button red-border round-button" onClick={handleRemoveRound}>
-                            {scores.length > 0 ? "Remove Round" : "Make Changes"}</button>
-                        <button className="match-button green-border round-button" onClick={handleAddRound}>Add Round</button>
+                ? <> 
+                <div id="round-buttons">
+                    <button className="match-button red-border round-button" onClick={handleRemoveRound}>
+                        {scores.length > 0 ? "Remove Round" : "Make Changes"}</button>
+                    <button className="match-button green-border round-button" onClick={handleAddRound}>Add Round</button>
                 </div>
+                <div className="match-buttons">
+                <button id="save-match-button" className="match-button green-border round-button"
+                    onClick={({target}) => sendMatchToServer(target)}>Save Match</button>
+                </div>
+                
+                </>
                 : 
                 <button id="start-match" className="match-button green-border " onClick={handleStartMatch}>Start Match!</button>
             }

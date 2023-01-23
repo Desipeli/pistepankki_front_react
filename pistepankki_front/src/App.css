@@ -268,6 +268,17 @@ input[type=submit]:hover {
     justify-content: space-between;
 }
 
+.match-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#save-match-button {
+    width: 80%;
+    height: 60px;
+    margin: 40px 0px;
+}
+
 .round-button {
     margin: 0 10% 0 10%;
     height: 50px;
