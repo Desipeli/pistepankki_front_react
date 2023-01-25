@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import getSports from "../services/sportService"
 import getAllUsers from "../services/userService"
-import { getWinnersOfTheRound, winListFromRound, validateMatch, validatePreMatch } from "../services/matchService"
+import { winListFromRound, validateMatch, validatePreMatch } from "../services/matchService"
 
 const Match = (props) => {
     const { setTimedMessage } = props

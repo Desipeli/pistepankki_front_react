@@ -46,7 +46,6 @@ export const winListFromRound = (scores, startingRoundIndex, players, previousWi
     let results = [...previousWins]
     for (let roundIndex = startingRoundIndex; roundIndex<scores.length; roundIndex++) {
         const roundResults = getWinnersOfTheRound(scores[roundIndex])
-
         if (roundIndex === 0) {
             roundResults.forEach((r, i) => results[roundIndex][i] = r)
         } else {
@@ -57,20 +56,21 @@ export const winListFromRound = (scores, startingRoundIndex, players, previousWi
 }
 
 const checkWinners = (scores, players) => {
-    const wins = {}
-    players.forEach( (player, index) => wins[index] = 0)
-    scores.forEach(round => {
-        getWinnersOfTheRound(round).forEach( (result, index) => {
-           wins[index] += result
-        })
+    const initWins = scores.map( round => [players.map(p => 0)])
+    const allRounds = winListFromRound(scores, 0, players, initWins)
+    const lastRound = allRounds.slice(allRounds.length-1)[0]
+    const highestWinCount = lastRound.reduce((a, b) => Math.max(a, b), -Infinity)
+    const winners = []
+    players.forEach((p, index) => {
+        if (lastRound[index] === highestWinCount) {
+            winners.push(index)
+        }
     })
-
-    return wins
+    return winners
 }   
 
 export const validateMatch = (players, users, scores) => {
     validatePreMatch(players, users)
     validateScores(scores)
     const winners = checkWinners(scores, players)
-    console.log("WInnn", winners)
 }
