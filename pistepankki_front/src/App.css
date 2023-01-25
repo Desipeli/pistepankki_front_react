@@ -1,36 +1,35 @@
 /*COLORS*/
 :root {
-    /*DARK*/
-    --text-dark: #dbdad3;
-    --text-input-dark: #dbdad3;
-    --bg-content-dark: #1c1c1c;
-    --bg-navbar-dark: #2e2e2e;
-    --bg-form-dark: #494d5f;
-    --bg-form-border-dark: wheat;
-    --border-form-input-dark: black;
-    --bg-form-input-dark: #2e2e2e;
-    --bg-button-hover-green-dark: green;
-    --bg-button-hover-red-dark: red;
-    --text-navbar-dark: #ffd700;
-    --bg-navbar-button-hover: #494d5f;
-    --border-green-dark: greenyellow;
-    --border-red-dark: red;
+  /*DARK*/
+  --text-dark: #dbdad3;
+  --text-input-dark: #dbdad3;
+  --bg-content-dark: #1c1c1c;
+  --bg-navbar-dark: #2e2e2e;
+  --bg-form-dark: #494d5f;
+  --bg-form-border-dark: wheat;
+  --border-form-input-dark: black;
+  --bg-form-input-dark: #2e2e2e;
+  --bg-button-hover-green-dark: green;
+  --bg-button-hover-red-dark: red;
+  --text-navbar-dark: #ffd700;
+  --bg-navbar-button-hover: #494d5f;
+  --border-green-dark: greenyellow;
+  --border-red-dark: red;
 }
 
 /*BODY & CONTENT*/
 
 #content {
-    max-width: 1000px;
-    margin: auto;
-    /* height: 100%; */
+  max-width: 1000px;
+  margin: auto;
+  /* height: 100%; */
 }
 
 body {
-    margin: 0;
-    background-color: var(--bg-content-dark);
-    color: var(--text-dark);
+  margin: 0;
+  background-color: var(--bg-content-dark);
+  color: var(--text-dark);
 }
-
 
 /*vaaleatumma 494d5f*/
 /*kulta ffd700*/
@@ -38,199 +37,197 @@ body {
 /*NAVBAR*/
 
 #navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--bg-navbar-dark);
-    border-radius: 0 0 5px 5px;
-    height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-navbar-dark);
+  border-radius: 0 0 5px 5px;
+  height: 75px;
 }
 
 #navbar-logo a {
-    text-decoration: none;
-    color: var(--text-navbar-dark);
-    font-size: 30px;
-    padding: 10px;
+  text-decoration: none;
+  color: var(--text-navbar-dark);
+  font-size: 30px;
+  padding: 10px;
 }
 
 #navbar-menu {
-    display: flex;
-    gap: 1em;
-    font-size: 20px;
-    padding: 0 10px;
+  display: flex;
+  gap: 1em;
+  font-size: 20px;
+  padding: 0 10px;
 }
 
 .li-navbar-normal a {
-    color: var(--text-navbar-dark);
-    border: solid 1px var(--text-navbar-dark);
+  color: var(--text-navbar-dark);
+  border: solid 1px var(--text-navbar-dark);
 }
 
 .li-navbar a {
-    transition: 200ms;
-    text-decoration: none;
-    border-radius: 25%;
-    padding: 10px;
+  transition: 200ms;
+  text-decoration: none;
+  border-radius: 25%;
+  padding: 10px;
 }
 
-.li-navbar-login, .li-navbar-logout {
-    display: block;
-    list-style-type: none;
+.li-navbar-login,
+.li-navbar-logout {
+  display: block;
+  list-style-type: none;
 }
 
 .li-navbar-login a {
-    color: var(--text-navbar-dark);
-    border: solid 1px var(--border-green-dark);
+  color: var(--text-navbar-dark);
+  border: solid 1px var(--border-green-dark);
 }
 
 .li-navbar-logout a {
-    color: var(--text-navbar-dark);
-    border: solid 1px var(--border-red-dark);
+  color: var(--text-navbar-dark);
+  border: solid 1px var(--border-red-dark);
 }
 
-.li-navbar a:hover{
-    transition: 500ms;
-    background-color: var(--bg-navbar-button-hover);
+.li-navbar a:hover {
+  transition: 500ms;
+  background-color: var(--bg-navbar-button-hover);
 }
 
 .li-navbar {
-        display: block;
-        list-style-type: none;
-    }
+  display: block;
+  list-style-type: none;
+}
 
 #hamburger {
-    display: none;
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {
-    #hamburger {
-        display: block;
-        font-size: 40px;
-        cursor: pointer;
-    }
-    .li-navbar {
-        display: none;
-    }
+  #hamburger {
+    display: block;
+    font-size: 40px;
+    cursor: pointer;
+  }
+  .li-navbar {
+    display: none;
+  }
 }
 
 /*hamburgaa*/
 
 #hamburger-menu-background {
-    position: fixed;
-    top: 75px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--bg-content-dark);
-    z-index:50;
+  position: fixed;
+  top: 75px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-content-dark);
+  z-index: 50;
 }
 
 #hamburger-menu {
-    display: block;
-    gap: 1em;
-    font-size: 20px;
-    padding: 0 10px;
-    z-index:55;
+  display: block;
+  gap: 1em;
+  font-size: 20px;
+  padding: 0 10px;
+  z-index: 55;
 }
 
 .li-hamburger a {
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-    color: var(--text-navbar-dark);
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  color: var(--text-navbar-dark);
 }
 
 .li-hamburger a:hover {
-    transition: 200ms;
-    background-color: var(--bg-navbar-dark);
+  transition: 200ms;
+  background-color: var(--bg-navbar-dark);
 }
-
 
 /* LOGIN */
 
 #login-frame {
-    margin: auto;
-    min-width: 200px;
-    max-width: 500px;
-    padding: 10px;
+  margin: auto;
+  min-width: 200px;
+  max-width: 500px;
+  padding: 10px;
 }
 
 #login-form {
-    border-radius: 5px;
-    background-color: var(--bg-form-dark);
-    border: var(--bg-form-border-dark) 1px solid;
-    padding: 20px;
+  border-radius: 5px;
+  background-color: var(--bg-form-dark);
+  border: var(--bg-form-border-dark) 1px solid;
+  padding: 20px;
 }
 
-#login-form input{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: block;
-    border: 1px solid var(--border-form-input-dark);
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: var(--bg-form-input-dark);
-    color: var(--text-input-dark);
-} 
-
-#login-form input[type=submit]{
-    border: 1px solid var(--border-green-dark);
+#login-form input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid var(--border-form-input-dark);
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: var(--bg-form-input-dark);
+  color: var(--text-input-dark);
 }
 
-#login-form input[type=submit]:hover{
-    transition: 500ms;
-    background-color: var(--bg-button-hover-green-dark);
+#login-form input[type='submit'] {
+  border: 1px solid var(--border-green-dark);
+}
+
+#login-form input[type='submit']:hover {
+  transition: 500ms;
+  background-color: var(--bg-button-hover-green-dark);
 }
 
 /*COMMON*/
 
-input[type=submit]:hover {
-    cursor: pointer;
+input[type='submit']:hover {
+  cursor: pointer;
 }
 
 .green-border {
-    border: solid var(--border-green-dark) 1px;
-    border-radius: 5px;
+  border: solid var(--border-green-dark) 1px;
+  border-radius: 5px;
 }
 
 .green-border:hover {
-    transition: 200ms;
-    background-color: var(--bg-button-hover-green-dark);
+  transition: 200ms;
+  background-color: var(--bg-button-hover-green-dark);
 }
 
 .red-border {
-    border: solid var(--border-red-dark) 1px;
-    border-radius: 5px;
+  border: solid var(--border-red-dark) 1px;
+  border-radius: 5px;
 }
 
 .red-border:hover {
-    transition: 200ms;
-    background-color: var(--bg-button-hover-red-dark);
-
+  transition: 200ms;
+  background-color: var(--bg-button-hover-red-dark);
 }
 /*MATCH*/
 #matchdiv {
-    margin: auto;
-    display: block;
-    width: 50% - padding;
-    min-width: 200px;
-    max-width: 600px;
-    padding: 20px;
+  margin: auto;
+  display: block;
+  width: 50% - padding;
+  min-width: 200px;
+  max-width: 600px;
+  padding: 20px;
 }
 
 #new-match-select {
-    width: 100%;
-    display: block;
-    height: 40px;
-    font-size: 20px;
+  width: 100%;
+  display: block;
+  height: 40px;
+  font-size: 20px;
 }
 
 .match-button {
-
-    height: 40px;
-    background: none;
-    color: white;
+  height: 40px;
+  background: none;
+  color: white;
 }
 
 /* .match-button:hover {
@@ -238,103 +235,103 @@ input[type=submit]:hover {
 } */
 
 #add-player {
-    margin: 0 25% 0 25%;
-    height: 50px;
-    width: 50%;
+  margin: 0 25% 0 25%;
+  height: 50px;
+  width: 50%;
 }
 
 .round h1 {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .added-player {
-    padding-top: 10px;
-    white-space: nowrap;
-    display: flex;
-    justify-content: space-between;
+  padding-top: 10px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
 }
 
 .player-input {
-    min-width: 100px;
-    width: 300px;
-    height: 20px;
-    font-size: 18px;
-    margin: 0px 10px;
+  min-width: 100px;
+  width: 300px;
+  height: 20px;
+  font-size: 18px;
+  margin: 0px 10px;
 }
 
 .round-players {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .name-input {
-    min-width: 50px;
-    width: 200px;
-    height: 20px;
-    font-size: 18px;
-    margin: 0px 10px;
-    background: none;
-    border: none;
-    color: var(--text-dark);
+  min-width: 50px;
+  width: 200px;
+  height: 20px;
+  font-size: 18px;
+  margin: 0px 10px;
+  background: none;
+  border: none;
+  color: var(--text-dark);
 }
 
 .score-input {
-    min-width: 50px;
-    width: 100px;
-    height: 30px;
-    font-size: 18px;
-    margin: 0px 10px;
+  min-width: 50px;
+  width: 100px;
+  height: 30px;
+  font-size: 18px;
+  margin: 0px 10px;
 }
 
 .win-input {
-    min-width: 35px;
-    width: 50px;
-    height: 30px;
-    font-size: 18px;
-    margin: 0px 10px;
-    background: none;
-    border: none;
-    color: var(--text-dark);
+  min-width: 35px;
+  width: 50px;
+  height: 30px;
+  font-size: 18px;
+  margin: 0px 10px;
+  background: none;
+  border: none;
+  color: var(--text-dark);
 }
 
 #round-buttons {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .match-buttons {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #save-match-button {
-    width: 80%;
-    height: 60px;
-    margin: 40px 0px;
+  width: 80%;
+  height: 60px;
+  margin: 40px 0px;
 }
 
 .round-button {
-    margin: 0 10% 0 10%;
-    height: 50px;
-    width: 50%;
+  margin: 0 10% 0 10%;
+  height: 50px;
+  width: 50%;
 }
 
 #start-match {
-    margin: 0 25% 0 25%;
-    width: 50%;
-    height: 50px;
+  margin: 0 25% 0 25%;
+  width: 50%;
+  height: 50px;
 }
 
 button:disabled {
-    cursor: auto;
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-    cursor: default;
+  cursor: auto;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  cursor: default;
 }
 
 button {
-    cursor: pointer;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
 }

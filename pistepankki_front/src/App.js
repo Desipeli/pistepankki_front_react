@@ -1,14 +1,13 @@
-import axios from "axios"
-import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 
-import Navbar from "./components/navbar";
-import LoginScreen from "./components/login";
-import Match from "./components/match";
-import { LogOut } from "./components/login";
+import Navbar from './components/navbar'
+import LoginScreen from './components/login'
+import Match from './components/match'
+import { LogOut } from './components/login'
 
-import Notification from "./components/notification";
-
+import Notification from './components/notification'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -24,7 +23,6 @@ function App() {
       setMessage(null)
     }, timeout)
     setCurrentMessageTimeout(timeId)
-
   }
 
   // Check if user logged in
@@ -39,21 +37,28 @@ function App() {
   return (
     <div className="App">
       <Navbar user={user} setUser={setUser} />
-      <Notification message={message}/>
-      <div id="content">  
+      <Notification message={message} />
+      <div id="content">
         <Routes>
-          <Route path="" element={<Home/>} />
-          <Route path="userlist" element={<UserList/>} />
-          <Route path="login" element={
-            <LoginScreen user={ user }
-              setUser={setUser}
-              setTimedMessage={setTimedMessage} />
-            }/>
+          <Route path="" element={<Home />} />
+          <Route path="userlist" element={<UserList />} />
+          <Route
+            path="login"
+            element={
+              <LoginScreen
+                user={user}
+                setUser={setUser}
+                setTimedMessage={setTimedMessage}
+              />
+            }
+          />
           <Route path="logout" element={<LogOut />} />
-          <Route path="newmatch" element={<Match setTimedMessage={setTimedMessage}/>}/>
+          <Route
+            path="newmatch"
+            element={<Match setTimedMessage={setTimedMessage} />}
+          />
         </Routes>
-      Hello there
-      
+        Hello there
       </div>
     </div>
   )
@@ -67,7 +72,6 @@ const Home = () => {
   return (
     <div>
       <p></p>
- 
     </div>
   )
 }
@@ -76,20 +80,16 @@ const UserList = () => {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/api/users')
-      .then(res => {
-        setUsers(res.data)
-      })
+    axios.get('http://localhost:3001/api/users').then((res) => {
+      setUsers(res.data)
+    })
   }, [])
 
-  const displayUserList = users.map(user => <li key={user._id}>{user.username}</li>)
+  const displayUserList = users.map((user) => (
+    <li key={user._id}>{user.username}</li>
+  ))
 
-  return (
-    <ul>
-      {displayUserList}
-    </ul>
-  )
+  return <ul>{displayUserList}</ul>
 }
 
-export default App;
+export default App

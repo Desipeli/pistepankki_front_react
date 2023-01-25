@@ -1,71 +1,89 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = (props) => {
-    const { user, setUser } = props
-    const [hamburgerMenu, setHamburgerMenu] = useState(false)
+  const { user } = props
+  const [hamburgerMenu, setHamburgerMenu] = useState(false)
 
-    useEffect(() => {
-        const handleResize = () => {
-            setHamburgerMenu(false)
-        }
-        window.addEventListener('resize', handleResize)
-        handleResize()
-    }, [])
+  useEffect(() => {
+    const handleResize = () => {
+      setHamburgerMenu(false)
+    }
+    window.addEventListener('resize', handleResize)
+    handleResize()
+  }, [])
 
-    
-    return (
-        <nav id='navbar'>
-            <div id="navbar-logo"><Link to="/">Pistepankki</Link></div>
-            <HamburgerMenu
-                hamburgerMenu={hamburgerMenu}
-                setHamburgerMenu={setHamburgerMenu}
-                user={user}/>
-            <NormalMenu user={user}/>
-            <div id="hamburger" onClick={
-                () => setHamburgerMenu(!hamburgerMenu)
-            }>&#9776;</div>
-        </nav>
-    )
+  return (
+    <nav id="navbar">
+      <div id="navbar-logo">
+        <Link to="/">Pistepankki</Link>
+      </div>
+      <HamburgerMenu
+        hamburgerMenu={hamburgerMenu}
+        setHamburgerMenu={setHamburgerMenu}
+        user={user}
+      />
+      <NormalMenu user={user} />
+      <div id="hamburger" onClick={() => setHamburgerMenu(!hamburgerMenu)}>
+        &#9776;
+      </div>
+    </nav>
+  )
 }
 
 const NormalMenu = (props) => {
-    const { user } = props
-    return(
-        <ul id="navbar-menu">
-            <li className="li-navbar li-navbar-normal"><Link to="/">Home</Link></li>
-            {user 
-                ? <>
-                    <li className="li-navbar li-navbar-normal"><Link to="newmatch">New Match</Link></li>
-                    <li className="li-navbar li-navbar-logout ">{user && <Link to="logout">Log Out</Link>}</li>
-                </>
-                : <li className="li-navbar li-navbar-login ">{!user && <Link to="login">Log in</Link> }</li>
-            }                
-        </ul>
-    )
+  const { user } = props
+  return (
+    <ul id="navbar-menu">
+      <li className="li-navbar li-navbar-normal">
+        <Link to="/">Home</Link>
+      </li>
+      {user ? (
+        <>
+          <li className="li-navbar li-navbar-normal">
+            <Link to="newmatch">New Match</Link>
+          </li>
+          <li className="li-navbar li-navbar-logout ">
+            {user && <Link to="logout">Log Out</Link>}
+          </li>
+        </>
+      ) : (
+        <li className="li-navbar li-navbar-login ">
+          {!user && <Link to="login">Log in</Link>}
+        </li>
+      )}
+    </ul>
+  )
 }
 
 const HamburgerMenu = (props) => {
-    const { hamburgerMenu, setHamburgerMenu, user } = props
+  const { hamburgerMenu, setHamburgerMenu, user } = props
 
-    if (hamburgerMenu) {
-        return (
-            <div id="hamburger-menu-background">
-                <ul id="hamburger-menu" onClick={() => setHamburgerMenu(false)}>
-                <li className="li-hamburger"><Link to="/">Home</Link></li>
-                {user 
-                    ? <>
-                        <li className="li-hamburger"><Link to="newmatch">New Match</Link></li>
-                        <li className="li-hamburger">{user && <Link to="logout">Log Out</Link>}</li>
-                    </>
-                    : <li className="li-hamburger">{!user && <Link to="login">Log in</Link> }</li>
-                }                
-                </ul>
-            </div>
-        )
-    }
+  if (hamburgerMenu) {
+    return (
+      <div id="hamburger-menu-background">
+        <ul id="hamburger-menu" onClick={() => setHamburgerMenu(false)}>
+          <li className="li-hamburger">
+            <Link to="/">Home</Link>
+          </li>
+          {user ? (
+            <>
+              <li className="li-hamburger">
+                <Link to="newmatch">New Match</Link>
+              </li>
+              <li className="li-hamburger">
+                {user && <Link to="logout">Log Out</Link>}
+              </li>
+            </>
+          ) : (
+            <li className="li-hamburger">
+              {!user && <Link to="login">Log in</Link>}
+            </li>
+          )}
+        </ul>
+      </div>
+    )
+  }
 }
-
 
 export default Navbar
