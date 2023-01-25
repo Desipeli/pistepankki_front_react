@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import getSports from "../services/sportService"
 import getAllUsers from "../services/userService"
-import { validatePreMatch } from "../services/matchService"
+import { getWinnersOfTheRound, winListFromRound, validateMatch, validatePreMatch } from "../services/matchService"
 
 const Match = (props) => {
     const { setTimedMessage } = props
@@ -67,6 +67,7 @@ const CurrentMatch = (props) => {
             const copyScores = [...scores]
             copyScores.pop()
             setScores(copyScores)
+            setWins(wins.slice(0, wins.length-1))
         }
     }
 
@@ -89,29 +90,24 @@ const CurrentMatch = (props) => {
         const copyScores = [...scores]
         copyScores[roundIndex][playerId] = value
         setScores(copyScores)
-        countWinsFromRound(roundIndex)
+        updateWins(roundIndex)
     }
 
-    const countWinsFromRound = (startingRoundIndex) => {
-        for (let roundIndex = startingRoundIndex; roundIndex < scores.length; roundIndex++) {
-            const highestScore = scores[roundIndex].reduce((a, b) => Math.max(a, b), -Infinity)
-            scores[roundIndex].forEach(( value, playerIndex) => {
-                if (roundIndex === 0) {
-                    wins[roundIndex][playerIndex] = 0
-                } else {
-                    wins[roundIndex][playerIndex] = wins[roundIndex-1][playerIndex]
-                }
-                if (value === highestScore) {
-                    wins[roundIndex][playerIndex] += 1
-                }
+    const updateWins = (startingRoundIndex) => {
+        const newWins = winListFromRound(scores, startingRoundIndex, players, wins)
+        setWins(newWins)
+
+        for (let roundIndex = startingRoundIndex; roundIndex < wins.length; roundIndex++) {
+            for (let playerIndex = 0; playerIndex<players.length; playerIndex++) {
                 const winInput = document.getElementById(`wins-${roundIndex}-${playerIndex}`)
-                winInput.value = wins[roundIndex][playerIndex]
-            })
+                winInput.value = wins[roundIndex][playerIndex]  
+            }        
         }
     }
 
     const sendMatchToServer = async (target) => {
         // validointi
+        validateMatch(players, users, scores)
         target.disabled = true
         setTimeout(() => {
             target.disabled = false
@@ -125,7 +121,7 @@ const CurrentMatch = (props) => {
             {
                 scores.map((round, index) => 
                     <div className="round" id={`round-${index+1}`} key={`round-${index+1}`}>
-                        <h1>Round {index}</h1>
+                        <h1>Round {index + 1}</h1>
                         {
                             players.map((player, Playerindex) =>
                                 <div className="round-players" key={`roundplayer-${index}-${Playerindex}`}>
