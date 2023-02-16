@@ -8,6 +8,7 @@ import Match from './components/match'
 import { LogOut } from './components/login'
 
 import Notification from './components/notification'
+import BrowseGames from './components/browse'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -40,7 +41,7 @@ function App() {
       <Notification message={message} />
       <div id="content">
         <Routes>
-          <Route path="" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="userlist" element={<UserList />} />
           <Route
             path="login"
@@ -55,7 +56,11 @@ function App() {
           <Route path="logout" element={<LogOut />} />
           <Route
             path="newmatch"
-            element={<Match setTimedMessage={setTimedMessage} />}
+            element={<Match setTimedMessage={setTimedMessage} user={user} />}
+          />
+          <Route
+            path="browse"
+            element={<BrowseGames setTimedMessage={setTimedMessage} />}
           />
         </Routes>
         Hello there
