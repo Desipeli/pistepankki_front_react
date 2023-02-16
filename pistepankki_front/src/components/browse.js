@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { getAll } from '../services/gameService'
 import getSports from '../services/sportService'
 import getAllUsers from '../services/userService'
@@ -142,14 +143,16 @@ const GameList = (props) => {
       <ul>
         {filteredGames
           ? filteredGames.map((g) => (
-              <li key={g._id}>
-                <span name="sport">{`${g.sport.name}`}</span>
-                <span name="datetime">
-                  {`${new Date(g.date).toLocaleDateString('fi-FI')} ${new Date(
-                    g.date
-                  ).toLocaleTimeString('fi-FI')}`}
-                </span>
-              </li>
+              <Link key={g._id} to={`/game/${g._id}`}>
+                <li key={g._id}>
+                  <span name="sport">{`${g.sport.name}`}</span>
+                  <span name="datetime">
+                    {`${new Date(g.date).toLocaleDateString(
+                      'fi-FI'
+                    )} ${new Date(g.date).toLocaleTimeString('fi-FI')}`}
+                  </span>
+                </li>
+              </Link>
             ))
           : null}
       </ul>
