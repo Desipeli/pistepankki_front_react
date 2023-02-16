@@ -3,12 +3,14 @@ import getSports from '../services/sportService'
 import getAllUsers from '../services/userService'
 import {
   winListFromRound,
-  validateMatch,
+  sendMatch,
   validatePreMatch,
+  validateScores,
 } from '../services/matchService'
+import { useNavigate } from 'react-router-dom'
 
 const Match = (props) => {
-  const { setTimedMessage } = props
+  const { setTimedMessage, user } = props
   const [players, setPlayers] = useState([])
   const [sport, setSport] = useState([])
   const [matchOn, setMatchOn] = useState(false)
@@ -50,6 +52,7 @@ const Match = (props) => {
         sports={sports}
         scores={scores}
         setScores={setScores}
+        user={user}
       />
     </div>
   )
@@ -64,8 +67,11 @@ const CurrentMatch = (props) => {
     users,
     scores,
     setScores,
+    sport,
+    user,
   } = props
   const [wins, setWins] = useState([])
+  const navigate = useNavigate()
 
   const handleAddRound = () => {
     const newRound = {}
@@ -129,11 +135,23 @@ const CurrentMatch = (props) => {
 
   const sendMatchToServer = async (target) => {
     // validointi
-    validateMatch(players, users, scores)
     target.disabled = true
     setTimeout(() => {
       target.disabled = false
     }, 5000)
+    try {
+      validatePreMatch(players, users)
+      validateScores(scores)
+      const res = await sendMatch(players, users, scores, sport, user)
+      setTimedMessage('Match saved!', 5000)
+      navigate('/')
+    } catch (error) {
+      try {
+        setTimedMessage(error.response.data.error, 5000)
+      } catch (error2) {
+        setTimedMessage(error.message, 5000)
+      }
+    }
   }
 
   return (
@@ -226,11 +244,16 @@ const PreMatch = (props) => {
     users,
     sports,
     setSports,
+    sport,
   } = props
 
   try {
     useEffect(() => {
-      const allSports = async () => setSports(await getSports())
+      const allSports = async () => {
+        const all = await getSports()
+        setSports(all)
+        setSport(all[0]._id)
+      }
       allSports()
     }, [setSports])
   } catch (error) {
@@ -261,6 +284,7 @@ const PreMatch = (props) => {
       <div>
         <label htmlFor="new-match-select">Choose Sport</label>
         <select
+          defaultValue={sport}
           id="new-match-select"
           onChange={({ target }) => handleSportChange(target.value)}
           disabled={matchOn}
