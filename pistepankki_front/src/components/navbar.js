@@ -38,6 +38,9 @@ const NormalMenu = (props) => {
       <li className="li-navbar li-navbar-normal">
         <Link to="/">Home</Link>
       </li>
+      <li className="li-navbar li-navbar-normal">
+        <Link to="/browse">Browse</Link>
+      </li>
       {user ? (
         <>
           <li className="li-navbar li-navbar-normal">
@@ -65,6 +68,9 @@ const HamburgerMenu = (props) => {
         <ul id="hamburger-menu" onClick={() => setHamburgerMenu(false)}>
           <li className="li-hamburger">
             <Link to="/">Home</Link>
+          </li>
+          <li className="li-hamburger">
+            <Link to="/browse">Browse</Link>
           </li>
           {user ? (
             <>
