@@ -1,10 +1,14 @@
 import axios from 'axios'
 const baseUrl = process.env.REACT_APP_BACKEND_URL + '/api/games'
 
-export const validatePreMatch = (players, users) => {
+export const validatePreMatch = (players, users, user) => {
   if (players.length <= 1) {
     throw Error('Choose at least 2 players')
   }
+  if (!players.includes(user.username)) {
+    throw Error('you must participate in game')
+  }
+
   const usernames = users.map((u) => u.username)
   const checkedUsernames = []
   for (const player of players) {

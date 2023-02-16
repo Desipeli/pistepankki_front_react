@@ -95,7 +95,7 @@ const CurrentMatch = (props) => {
 
   const handleStartMatch = () => {
     try {
-      validatePreMatch(players, users)
+      validatePreMatch(players, users, user)
       setMatchOn(true)
     } catch (error) {
       setTimedMessage(error.message, 5000)
@@ -140,7 +140,7 @@ const CurrentMatch = (props) => {
       target.disabled = false
     }, 5000)
     try {
-      validatePreMatch(players, users)
+      validatePreMatch(players, users, user)
       validateScores(scores)
       const res = await sendMatch(players, users, scores, sport, user)
       setTimedMessage('Match saved!', 5000)
