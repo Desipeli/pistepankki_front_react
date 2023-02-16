@@ -1,3 +1,6 @@
+import axios from 'axios'
+const baseUrl = process.env.REACT_APP_BACKEND_URL + '/api/games'
+
 export const validatePreMatch = (players, users) => {
   if (players.length <= 1) {
     throw Error('Choose at least 2 players')
@@ -16,7 +19,7 @@ export const validatePreMatch = (players, users) => {
   return true
 }
 
-const validateScores = (scores) => {
+export const validateScores = (scores) => {
   scores.forEach((round, roundIndex) => {
     round.forEach((score, scoreIndex) => {
       const s = Number(score)
@@ -82,8 +85,24 @@ const checkWinners = (scores, players) => {
   return winners
 }
 
-export const validateMatch = (players, users, scores) => {
-  validatePreMatch(players, users)
-  validateScores(scores)
-  const winners = checkWinners(scores, players)
+export const sendMatch = async (players, users, scores, sport, user) => {
+  const ids = []
+  for (const p of players) {
+    for (const u of users) {
+      if (p === u.username) {
+        ids.push(u._id)
+      }
+    }
+  }
+  const game = {
+    players: ids,
+    rounds: scores,
+    sport: sport,
+  }
+  const res = await axios.post(baseUrl, game, {
+    headers: {
+      'content-type': 'application/json',
+      Authorization: user.token,
+    },
+  })
 }
