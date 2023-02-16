@@ -9,6 +9,7 @@ import { LogOut } from './components/login'
 
 import Notification from './components/notification'
 import BrowseGames from './components/browse'
+import Game from './components/game'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -61,6 +62,10 @@ function App() {
           <Route
             path="browse"
             element={<BrowseGames setTimedMessage={setTimedMessage} />}
+          />
+          <Route
+            path="game/:id"
+            element={<Game setTimedMessage={setTimedMessage} />}
           />
         </Routes>
         Hello there
