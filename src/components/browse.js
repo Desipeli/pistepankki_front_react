@@ -44,10 +44,11 @@ const BrowseGames = (props) => {
   }
 
   return (
-    <div>
+    <div id="browse-view">
       <div id="search-options">
         <div id="search-sport">
           <label htmlFor="search-sport-select">sport</label>
+
           {sports ? (
             <select
               id="search-sport-select"
@@ -77,8 +78,12 @@ const BrowseGames = (props) => {
                   ))
                 : null}
             </ul>
-            <button onClick={() => setWinners([...winners, ''])}>+</button>
-            <button onClick={() => setWinners(winners.slice(0, -1))}>-</button>
+            <div id="search-winners-buttons">
+              <button onClick={() => setWinners(winners.slice(0, -1))}>
+                -
+              </button>
+              <button onClick={() => setWinners([...winners, ''])}>+</button>
+            </div>
           </div>
           <button id="search-button" onClick={handleSearchButton}>
             Search
@@ -144,7 +149,7 @@ const GameList = (props) => {
         {filteredGames
           ? filteredGames.map((g) => (
               <Link key={g._id} to={`/game/${g._id}`}>
-                <li key={g._id}>
+                <li className="listed-game" key={g._id}>
                   <span name="sport">{`${g.sport.name}`}</span>
                   <span name="datetime">
                     {`${new Date(g.date).toLocaleDateString(
