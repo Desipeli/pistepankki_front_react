@@ -90,11 +90,4 @@ const Home = () => {
   )
 }
 
-  const displayUserList = users.map((user) => (
-    <li key={user._id}>{user.username}</li>
-  ))
-
-  return <ul>{displayUserList}</ul>
-}
-
 export default App
