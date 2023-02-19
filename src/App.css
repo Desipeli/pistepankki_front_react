@@ -101,7 +101,7 @@ body {
   display: none;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 610px) {
   #hamburger {
     display: block;
     font-size: 40px;
@@ -419,4 +419,21 @@ ul {
 .game-round-scores {
   display: flex;
   justify-content: space-between;
+}
+
+/*PROFILE*/
+
+#change-password {
+  margin: auto;
+  display: block;
+  width: 50% - padding;
+  min-width: 100px;
+  max-width: 400px;
+  padding: 20px;
+}
+
+#change-password input {
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
 }
