@@ -10,6 +10,7 @@ import { LogOut } from './components/login'
 import Notification from './components/notification'
 import BrowseGames from './components/browse'
 import Game from './components/game'
+import Profile from './components/profile'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -66,6 +67,10 @@ function App() {
           <Route
             path="game/:id"
             element={<Game setTimedMessage={setTimedMessage} />}
+          />
+          <Route
+            path="profile"
+            element={<Profile setTimedMessage={setTimedMessage} user={user} />}
           />
         </Routes>
       </div>
