@@ -68,7 +68,6 @@ function App() {
             element={<Game setTimedMessage={setTimedMessage} />}
           />
         </Routes>
-        Hello there
       </div>
     </div>
   )
