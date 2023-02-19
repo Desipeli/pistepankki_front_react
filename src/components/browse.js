@@ -147,18 +147,18 @@ const GameList = (props) => {
     <div>
       <ul>
         {filteredGames
-          ? filteredGames.map((g) => (
-              <Link key={g._id} to={`/game/${g._id}`}>
-                <li className="listed-game" key={g._id}>
-                  <span name="sport">{`${g.sport.name}`}</span>
-                  <span name="datetime">
-                    {`${new Date(g.date).toLocaleDateString(
-                      'fi-FI'
-                    )} ${new Date(g.date).toLocaleTimeString('fi-FI')}`}
-                  </span>
-                </li>
-              </Link>
-            ))
+          ? filteredGames
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .map((g) => (
+                <Link key={g._id} to={`/game/${g._id}`}>
+                  <li className="listed-game" key={g._id}>
+                    <span name="sport">{`${g.sport.name}`}</span>
+                    <span name="datetime">
+                      {`${new Date(g.date).toLocaleDateString('fi-FI')} `}
+                    </span>
+                  </li>
+                </Link>
+              ))
           : null}
       </ul>
     </div>
