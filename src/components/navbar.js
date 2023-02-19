@@ -36,15 +36,15 @@ const NormalMenu = (props) => {
   return (
     <ul id="navbar-menu">
       <li className="li-navbar li-navbar-normal">
-        <Link to="/">Home</Link>
-      </li>
-      <li className="li-navbar li-navbar-normal">
         <Link to="/browse">Browse</Link>
       </li>
       {user ? (
         <>
           <li className="li-navbar li-navbar-normal">
             <Link to="newmatch">New Match</Link>
+          </li>
+          <li className="li-navbar li-navbar-normal">
+            <Link to="/profile">Profile</Link>
           </li>
           <li className="li-navbar li-navbar-logout ">
             {user && <Link to="logout">Log Out</Link>}
@@ -67,15 +67,15 @@ const HamburgerMenu = (props) => {
       <div id="hamburger-menu-background">
         <ul id="hamburger-menu" onClick={() => setHamburgerMenu(false)}>
           <li className="li-hamburger">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="li-hamburger">
             <Link to="/browse">Browse</Link>
           </li>
           {user ? (
             <>
               <li className="li-hamburger">
                 <Link to="newmatch">New Match</Link>
+              </li>
+              <li className="li-hamburger">
+                <Link to="/profile">Profile</Link>
               </li>
               <li className="li-hamburger">
                 {user && <Link to="logout">Log Out</Link>}
