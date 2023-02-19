@@ -335,3 +335,88 @@ button {
   opacity: 1;
   transition: opacity 0.5s ease-out;
 }
+
+/*BROWSE*/
+
+#browse-view {
+  margin: auto;
+  display: block;
+  width: 50% - padding;
+  min-width: 200px;
+  max-width: 600px;
+  padding: 20px;
+}
+
+#browse-view li,
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#browse-view a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-size: 25px;
+}
+
+#search-options div {
+  padding-bottom: 30px;
+}
+
+#search-sport-select {
+  width: 100%;
+  display: block;
+  height: 40px;
+  font-size: 25px;
+}
+
+#search-winners-inputs input {
+  width: 100%;
+  display: block;
+  height: 30px;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+#search-winners-buttons {
+  display: flex;
+  justify-content: right;
+}
+
+#search-winners-buttons button {
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  margin-right: 50px;
+}
+
+#search-button {
+  width: 100px;
+  height: 40px;
+  font-size: 25px;
+}
+
+.listed-game {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*GAMEVIEW*/
+#game-view {
+  margin: auto;
+  display: block;
+  width: 50% - padding;
+  min-width: 100px;
+  max-width: 200px;
+  padding: 20px;
+}
+
+.game-round-header {
+  display: flex;
+  justify-content: center;
+}
+
+.game-round-scores {
+  display: flex;
+  justify-content: space-between;
+}
