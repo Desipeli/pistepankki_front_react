@@ -44,7 +44,6 @@ function App() {
       <div id="content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="userlist" element={<UserList />} />
           <Route
             path="/login"
             element={
