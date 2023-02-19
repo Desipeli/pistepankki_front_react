@@ -25,7 +25,7 @@ const Game = (props) => {
   }
 
   return (
-    <div>
+    <div id="game-view">
       <div>
         <span>date: </span>
         <span>
@@ -42,16 +42,19 @@ const Game = (props) => {
         <span>winners: </span>
         <span>{game.winners.map((p) => p.username).join(', ')}</span>
       </div>
-      <div>
+      <div id="game-rounds">
         <span>rounds: </span>
         <span>
           <ul>
             {game.rounds.map((r, i) => (
-              <li key={`${r - i}`}>
-                <span>Round {i}</span>
+              <li key={`${r}-${i}`}>
+                <h3 className="game-round-header">Round {i + 1}</h3>
                 <ul>
                   {r.map((score, index) => (
-                    <li key={`score-${i}-${index}`}>
+                    <li
+                      key={`score-${i}-${index}`}
+                      className="game-round-scores"
+                    >
                       <span>{game.players[index].username}: </span>
                       <span>{score}</span>
                     </li>
