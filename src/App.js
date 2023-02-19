@@ -90,15 +90,6 @@ const Home = () => {
   )
 }
 
-const UserList = () => {
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-    axios.get('http://localhost:3001/api/users').then((res) => {
-      setUsers(res.data)
-    })
-  }, [])
-
   const displayUserList = users.map((user) => (
     <li key={user._id}>{user.username}</li>
   ))
