@@ -46,7 +46,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="userlist" element={<UserList />} />
           <Route
-            path="login"
+            path="/login"
             element={
               <LoginScreen
                 user={user}
@@ -55,21 +55,21 @@ function App() {
               />
             }
           />
-          <Route path="logout" element={<LogOut />} />
+          <Route path="/logout" element={<LogOut />} />
           <Route
-            path="newmatch"
+            path="/newmatch"
             element={<Match setTimedMessage={setTimedMessage} user={user} />}
           />
           <Route
-            path="browse"
+            path="/browse"
             element={<BrowseGames setTimedMessage={setTimedMessage} />}
           />
           <Route
-            path="game/:id"
+            path="/game/:id"
             element={<Game setTimedMessage={setTimedMessage} />}
           />
           <Route
-            path="profile"
+            path="/profile"
             element={<Profile setTimedMessage={setTimedMessage} user={user} />}
           />
         </Routes>
