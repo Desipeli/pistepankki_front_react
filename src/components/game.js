@@ -1,20 +1,33 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getGameById } from '../services/gameService'
+import { useNavigate, useParams } from 'react-router-dom'
+import { deleteGame, getGameById } from '../services/gameService'
 
 const Game = (props) => {
+  const { user, setTimedMessage } = props
   const { id } = useParams()
   const [game, setGame] = useState()
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getGame = async () => {
       const res = await getGameById(id)
       setGame(res)
+      setLoading(false)
     }
     getGame()
-    setLoading(false)
   }, [])
+
+  const handleDeleteGame = async () => {
+    if (!confirm('Delete this match?')) return
+    try {
+      await deleteGame(game._id, user)
+      setTimedMessage('Match deleted!', 5000)
+      navigate('/')
+    } catch (error) {
+      setTimedMessage(error.response.data.error, 5000)
+    }
+  }
 
   if (loading) {
     return <div>Loading</div>
@@ -26,6 +39,12 @@ const Game = (props) => {
 
   return (
     <div id="game-view">
+      {user && user.username === game.submitter.username ? (
+        <button id="delete-game-button" onClick={handleDeleteGame}>
+          Delete game
+        </button>
+      ) : null}
+
       <div>
         <span>date: </span>
         <span>
