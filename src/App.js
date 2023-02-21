@@ -65,7 +65,7 @@ function App() {
           />
           <Route
             path="/game/:id"
-            element={<Game setTimedMessage={setTimedMessage} />}
+            element={<Game setTimedMessage={setTimedMessage} user={user} />}
           />
           <Route
             path="/profile"
