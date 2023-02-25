@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Navbar = (props) => {
-  const { user } = props
+  const { user, theme, setTheme } = props
   const [hamburgerMenu, setHamburgerMenu] = useState(false)
 
   useEffect(() => {
@@ -13,16 +13,21 @@ const Navbar = (props) => {
     handleResize()
   }, [])
 
-  const handleThemeChange = (mode) => {
-    document.documentElement.className = mode
+  const handleThemeChange = (theme) => {
+    document.documentElement.className = theme
+    setTheme(theme)
+    window.localStorage.setItem('theme', theme)
   }
 
   return (
     <nav id="navbar">
       <div id="navbar-logo">
         <Link to="/">Pistepankki</Link>
-        <button onClick={() => handleThemeChange('dark')}>dark</button>
-        <button onClick={() => handleThemeChange('light')}>light</button>
+        {theme === 'light' ? (
+          <button onClick={() => handleThemeChange('dark')}>dark</button>
+        ) : (
+          <button onClick={() => handleThemeChange('light')}>light</button>
+        )}
       </div>
       <HamburgerMenu
         hamburgerMenu={hamburgerMenu}

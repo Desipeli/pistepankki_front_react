@@ -16,6 +16,7 @@ function App() {
   const [user, setUser] = useState(null)
   const [message, setMessage] = useState(null)
   const [currentMessageTimeout, setCurrentMessageTimeout] = useState(null)
+  const [theme, setTheme] = useState('light')
 
   const setTimedMessage = (mess, timeout) => {
     if (currentMessageTimeout) {
@@ -35,11 +36,16 @@ function App() {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
     }
+    const theme = window.localStorage.getItem('theme')
+    if (theme) {
+      document.documentElement.className = theme
+      setTheme(theme)
+    }
   }, [])
 
   return (
     <div className="App">
-      <Navbar user={user} setUser={setUser} />
+      <Navbar user={user} setUser={setUser} theme={theme} setTheme={setTheme} />
       <Notification message={message} />
       <div id="content">
         <Routes>
