@@ -13,10 +13,16 @@ const Navbar = (props) => {
     handleResize()
   }, [])
 
+  const handleThemeChange = (mode) => {
+    document.documentElement.className = mode
+  }
+
   return (
     <nav id="navbar">
       <div id="navbar-logo">
         <Link to="/">Pistepankki</Link>
+        <button onClick={() => handleThemeChange('dark')}>dark</button>
+        <button onClick={() => handleThemeChange('light')}>light</button>
       </div>
       <HamburgerMenu
         hamburgerMenu={hamburgerMenu}

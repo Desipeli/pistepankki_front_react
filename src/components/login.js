@@ -39,9 +39,9 @@ const LoginForm = (props) => {
     }
   }
   return (
-    <div id="login-frame">
-      <form id="login-form" onSubmit={handleLogin}>
-        <div className="login-form-row">
+    <div className="form-frame">
+      <form onSubmit={handleLogin}>
+        <fieldset>
           <label htmlFor="input-username">Username</label>
           <input
             id="input-username"
@@ -49,8 +49,6 @@ const LoginForm = (props) => {
             value={usernameInput}
             onChange={({ target }) => setUsernameInput(target.value)}
           />
-        </div>
-        <div className="login-form-row">
           <label htmlFor="input-password">Password</label>
           <input
             id="input-password"
@@ -58,8 +56,7 @@ const LoginForm = (props) => {
             value={passwordInput}
             onChange={({ target }) => setPasswordInput(target.value)}
           />
-        </div>
-
+        </fieldset>
         <input type="submit"></input>
       </form>
     </div>
