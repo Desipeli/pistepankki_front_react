@@ -21,14 +21,21 @@ const Navbar = (props) => {
 
   return (
     <nav id="navbar">
-      <div id="navbar-logo">
-        <Link to="/">Pistepankki</Link>
+      <div id="logo-and-theme">
+        <div id="navbar-logo">
+          <Link to="/">Pistepankki</Link>
+        </div>
         {theme === 'light' ? (
-          <button onClick={() => handleThemeChange('dark')}>dark</button>
+          <div className="theme" onClick={() => handleThemeChange('dark')}>
+            🌃
+          </div>
         ) : (
-          <button onClick={() => handleThemeChange('light')}>light</button>
+          <div className="theme" onClick={() => handleThemeChange('light')}>
+            ☀️
+          </div>
         )}
       </div>
+
       <HamburgerMenu
         hamburgerMenu={hamburgerMenu}
         setHamburgerMenu={setHamburgerMenu}

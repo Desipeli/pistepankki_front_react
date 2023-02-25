@@ -77,6 +77,17 @@ body {
   border: var(--bg-secondary);
 }
 
+.theme {
+  display: flex;
+  font-size: 30px;
+  background-color: var(--bg-secondary);
+  cursor: pointer;
+}
+
+#logo-and-theme {
+  display: flex;
+}
+
 #navbar-logo a {
   text-decoration: none;
   color: var(--text-secondary);
@@ -134,7 +145,7 @@ body {
   display: none;
 }
 
-@media only screen and (max-width: 610px) {
+@media only screen and (max-width: 700px) {
   #hamburger {
     display: block;
     font-size: 40px;
