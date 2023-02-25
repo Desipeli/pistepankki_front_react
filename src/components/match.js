@@ -199,13 +199,13 @@ const CurrentMatch = (props) => {
         <>
           <div id="round-buttons">
             <button
-              className="match-button red-border round-button"
+              className="red-border round-button"
               onClick={handleRemoveRound}
             >
               {scores.length > 0 ? 'Remove Round' : 'Make Changes'}
             </button>
             <button
-              className="match-button green-border round-button"
+              className="green-border round-button"
               onClick={handleAddRound}
             >
               Add Round
