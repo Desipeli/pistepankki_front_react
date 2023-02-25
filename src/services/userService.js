@@ -8,7 +8,7 @@ const getAllUsers = async () => {
 
 export const validatePassword = (current, p1, p2) => {
   if (p1 !== p2) throw Error('new passwords do not match')
-  if (p1.length < 5) throw Error('password must be at least 5 characters long')
+  if (p1.length < 8) throw Error('password must be at least 8 characters long')
   return true
 }
 
