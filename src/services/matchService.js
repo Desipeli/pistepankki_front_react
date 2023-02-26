@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = process.env.REACT_APP_BACKEND_URL + '/api/games'
+import { REACT_APP_BACKEND_URL } from '../config'
+const baseUrl = REACT_APP_BACKEND_URL + '/api/games'
 
 export const validatePreMatch = (players, users, user) => {
   if (players.length <= 1) {

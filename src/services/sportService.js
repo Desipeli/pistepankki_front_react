@@ -1,6 +1,6 @@
 import axios from 'axios'
-
-const baseUrl = process.env.REACT_APP_BACKEND_URL + '/api/sports'
+import { REACT_APP_BACKEND_URL } from '../config'
+const baseUrl = REACT_APP_BACKEND_URL + '/api/sports'
 
 const comp = (a, b) => {
   if (a.name > b.name) {
