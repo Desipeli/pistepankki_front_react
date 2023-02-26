@@ -85,7 +85,11 @@ const BrowseGames = (props) => {
               <button onClick={() => setWinners([...winners, ''])}>+</button>
             </div>
           </div>
-          <button id="search-button" onClick={handleSearchButton}>
+          <button
+            id="search-button"
+            className="green-border"
+            onClick={handleSearchButton}
+          >
             Search
           </button>
         </div>

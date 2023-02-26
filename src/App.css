@@ -199,13 +199,21 @@ body {
 
 form {
   background-color: var(--bg-form);
-
   padding: 20px;
 }
 
-form input {
+form fieldset {
+  border: var(--bg-form-border) 1px solid;
+  border-radius: 5px;
+  /* border: none; */
+}
+
+/*INPUTS/BUTTONS*/
+
+input,
+select {
   width: 100%;
-  padding: 12px 20px;
+  height: 40px;
   margin: 8px 0;
   display: block;
   border: 1px solid var(--border-form-input);
@@ -215,26 +223,15 @@ form input {
   color: var(--text-input);
 }
 
-form input[type='submit'] {
+input[type='submit'] {
   transition: 500ms;
   border: 1px solid var(--border-green);
   background-color: var(--border-green);
 }
 
-form input[type='submit']:hover {
+input[type='submit']:hover {
   transition: 500ms;
   background-color: var(--bg-button-hover-green);
-}
-
-form fieldset {
-  border: var(--bg-form-border) 1px solid;
-  border-radius: 5px;
-  /* border: none; */
-}
-
-/*COMMON*/
-
-input[type='submit']:hover {
   cursor: pointer;
 }
 
@@ -257,6 +254,11 @@ input[type='submit']:hover {
   transition: 200ms;
   background-color: var(--bg-button-hover-red);
 }
+
+button {
+  color: var(--text-primary);
+}
+
 /*MATCH*/
 #matchdiv {
   margin: auto;
@@ -277,7 +279,6 @@ input[type='submit']:hover {
 .match-button {
   height: 40px;
   background: none;
-  color: var(--text-primary);
 }
 
 .match-button.green-border {
@@ -312,7 +313,6 @@ input[type='submit']:hover {
 .player-input {
   min-width: 100px;
   width: 300px;
-  height: 20px;
   font-size: 18px;
   margin: 0px 10px;
 }
@@ -344,12 +344,12 @@ input[type='submit']:hover {
 .win-input {
   min-width: 35px;
   width: 50px;
-  height: 30px;
   font-size: 18px;
   margin: 0px 10px;
   background: none;
   border: none;
-  color: var(--text-primary);
+  box-sizing: border-box;
+  color: var(--text-input);
 }
 
 #round-buttons {
@@ -372,6 +372,7 @@ input[type='submit']:hover {
   margin: 0 10% 0 10%;
   height: 50px;
   width: 50%;
+  background: none;
 }
 
 /* #start-match {
@@ -427,30 +428,38 @@ ul {
   font-size: 25px;
 }
 
-#search-winners-inputs input {
-  width: 100%;
-  display: block;
-  height: 30px;
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
 #search-winners-buttons {
   display: flex;
   justify-content: right;
 }
 
 #search-winners-buttons button {
+  transition: 250ms;
   width: 50px;
   height: 50px;
   font-size: 40px;
   margin-right: 50px;
+  background-color: var(--bg-primary);
+  color: var(--text-input);
+  border: solid;
+  border-color: #d89216;
+}
+
+#search-winners-buttons button:hover {
+  transition: 250ms;
+  background-color: var(--bg-secondary);
 }
 
 #search-button {
   width: 100px;
   height: 40px;
   font-size: 25px;
+  background: none;
+}
+
+#search-button:hover {
+  background-color: var(--bg-button-hover-green);
+  color: black;
 }
 
 .listed-game {
